@@ -16,11 +16,11 @@ function App() {
       .then(data => updateSushis(data))
   }, [offset])
 
-  function handlePlates(sushi, eaten) {
-    const addPlate = [...plates, sushi]
-    const removePlate = plates.filter(plate => plate !== sushi)
-    eaten ? updatePlates(addPlate) : updatePlates(removePlate)
-    console.log(plates)
+  function handleEaten(sushi, price) {
+    if (moneyLeft >= price) {
+      updatePlates([...plates, sushi])
+      chargeMoney(moneyLeft - price)
+    }
   }
 
   return (
@@ -29,7 +29,7 @@ function App() {
         sushis={sushis} 
         offset={offset} 
         onAddSushi={changeOffset}
-        onEaten={handlePlates}
+        onEaten={handleEaten}
         plates={plates}
       />
       <Table money={moneyLeft} plates={plates} />
