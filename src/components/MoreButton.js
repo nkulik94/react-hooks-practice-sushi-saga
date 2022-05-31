@@ -1,7 +1,8 @@
 import React from "react";
 
-function MoreButton(props) {
-  return <button onClick={/* Fill me in! */ null}>More sushi!</button>;
+function MoreButton( { offset, onAddSushi } ) {
+  const newOffset = offset === 25 ? 1 : offset + 1
+  return <button onClick={() => onAddSushi(newOffset)}>More sushi!</button>;
 }
 
 export default MoreButton;
